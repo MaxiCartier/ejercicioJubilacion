@@ -1,14 +1,25 @@
-const argv = require("process").argv;
-const comando = argv[2];
+const edad = +(process.argv[2]);
+const genero = process.argv[3];
+const aniosAporte = +(process.argv[4]);
 
-switch (comando) {
-    case puedeJubilarse:
-        let edad = +argv[3];
-        let genero = argv [4];
-        let aniosAporte = argv [5];
-        
-        break;
+function puedeJubilarse(edad, genero, aniosAporte) {
+    function estaEnEdad(edad, genero) {
+      switch (genero) {
+        case 'F':
+          return edad >= 60;
+        case 'M':
+          return edad >= 65;
+        default:
+          return false;
+      }
+    }
+    
+    function tieneSuficientesAportes(aniosAporte) {
+      return aniosAporte >= 30;
+    }
+    
+    return estaEnEdad(edad, genero) && tieneSuficientesAportes(aniosAporte);
+  }
 
-    default:
-        break;
-}
+  
+  console.log(puedeJubilarse(edad, genero, aniosAporte));
